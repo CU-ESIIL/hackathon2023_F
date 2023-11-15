@@ -5,6 +5,8 @@ library(tidyverse)
 
 rimFire <- sf::st_read("Data/Rim_fire.shp")
 
+
+crs(rimFire)
 plot(rimFire$geometry)
 
 
