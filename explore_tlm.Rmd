@@ -1,0 +1,12 @@
+```{r}
+
+library(sf)
+library(tidyverse)
+
+rimFire <- sf::st_read("Data/Rim_fire.shp")
+
+plot(rimFire$geometry)
+
+
+
+```
