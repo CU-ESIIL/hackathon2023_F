@@ -119,3 +119,14 @@ tm_shape(osm_road_lines[!trail_indicator,]) +
   tm_shape(gbif$geometry) +
   tm_dots(fill="red",alpha=0.15, size=.35)
 
+## Try to rasterize distances to roads
+my_grid <- fire_poly %>% 
+  st_make_grid(cellsize = 0.01, what = "centers")
+
+
+length(my_grid)
+nearest <- st_nearest_feature(my_grid, osm_road_lines)
+distances <- st_distance(my_grid, osm_road_lines[nearest,], by_element=TRUE)
+# This gets all the distances but don't know how to rasterize now
+hist(distances)
+
