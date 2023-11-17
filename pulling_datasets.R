@@ -1,4 +1,7 @@
+install.packages('rgdal', type = "source", configure.args=c('--with-proj-include=/opt/conda/envs/earth-analytics-python/include','--with-proj-lib=/opt/conda/envs/earth-analytics-python/lib'))
+
 library("rgdal") 
+library('gdalcubes')
 library("sf")
 library("tidyverse")
 library('spocc')
@@ -10,7 +13,7 @@ library("spdep")
 library("osmdata")
 library("lwgeom")
 library("httr")
-
+Sys.setenv("PROJ_LIB" = "/opt/conda/envs/earth-analytics-python/share/proj")
 setwd("/home/jovyan/data-store/hackathon2023_F")
 
 fireRegion <- st_read("Data/Rim_fire.shp")

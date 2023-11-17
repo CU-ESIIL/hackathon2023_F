@@ -1,3 +1,5 @@
+install.packages('rgdal', type = "source", configure.args=c('--with-proj-include=/opt/conda/envs/earth-analytics-python/include','--with-proj-lib=/opt/conda/envs/earth-analytics-python/lib'))
+Sys.setenv("PROJ_LIB" = "/opt/conda/envs/earth-analytics-python/share/proj")
 library(sf)
 library(gdalcubes)
 library(rstac)
@@ -15,6 +17,7 @@ library(ggthemes)
 library(tidyr)
 library(tmap)
 gdalcubes_options(parallel = 8)
+
 
 ### Initial changes
 setwd("/home/jovyan/data-store/hackathon2023_F")
@@ -44,14 +47,16 @@ osm_roads <- opq(bbox) %>%
   osmdata_sf() #%>%
   #trim_osmdata(bbox)
 
-# These fail :( and its a problem with cyverse I can't fix
-lines <- osm_roads$osm_lines %>%
-  st_transform(crs = "EPSG:4269")
-fire_poly <- fireRegion$geometry %>%
-  st_transform(crs = "EPSG:4326")
 
-agg <- c(fire_poly, osm_roads$osm_lines)
+lines <- osm_roads$osm_lines #%>%
+#  st_transform(crs = "EPSG:4269")
 
-tm_shape(agg) + 
-  tm_lines() +
-  tm_polygons()
+
+fire_poly <- fireRegion %>%
+  st_transform(crs = st_crs(osm_roads$osm_lines))
+
+tm_shape(osm_roads$osm_lines) +
+  tm_lines(col="black", alpha=0.5) +
+tm_shape(fire_poly$geometry) + 
+  tm_lines(col="blue") 
+
