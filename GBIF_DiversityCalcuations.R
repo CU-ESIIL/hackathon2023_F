@@ -25,10 +25,10 @@ setwd("/home/jovyan/data-store/hackathon2023_F")
 # fire_path <- "./Data/Rim_fire.shp"
 # fire_name <- "Rim Fire"
 
-# FOR CANYON PEAK FIRE
+# FOR CAMERON PEAK FIRE
 gbif_path <- "./Data/plants_in_fire_region_cameron_peak.shp"
 fire_path <- "./Data/cameron_peak_2020.shp"
-fire_name <- "Canyon Peak Fire"
+fire_name <- "Cameron Peak Fire"
 
 
 # Load in data
