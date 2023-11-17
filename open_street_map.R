@@ -117,7 +117,7 @@ tm_shape(osm_road_lines[!trail_indicator,]) +
   tm_shape(fire_poly$geometry) + 
   tm_lines(col="blue") +
   tm_shape(gbif$geometry) +
-  tm_dots(fill="red",alpha=0.15, size=.35)
+  tm_dots(col="red",alpha=0.25, size=.25)
 
 ## Try to rasterize distances to roads
 my_grid <- fire_poly %>% 
